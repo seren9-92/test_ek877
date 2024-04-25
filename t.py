@@ -10,6 +10,7 @@ import requests
 from requests.structures import CaseInsensitiveDict
 import datetime
 from typing import List, Dict, Union
+import pytest
 
 DateDict = Dict[str, Union[str, int]]
 
@@ -29,10 +30,21 @@ def fetch_moodle_data() -> Dict[str, DateDict]:
     if response.status_code == 200:
         data_dict = json.loads(response.text)
         if data_dict.get('ok'):
-            return "Работает Ok" # data_dict.get('msg', {})
+            return  data_dict.get('msg', {})
     
     return data_dict
 
 
+def sum2(x, y):
+    return x + y
+
+def sum3(x, y):
+    return x + y
+
+def test_sum2():
+    assert sum2(15, 8) == 23
+
+def test_sum3():
+    assert sum3(15, 8) == 44
 # Выполнить запрос к API
-print(fetch_moodle_data())
+#print(fetch_moodle_data())
